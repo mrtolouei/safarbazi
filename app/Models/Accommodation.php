@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Accommodation
+ *
  * @property string name
  * @property string capacity
  */

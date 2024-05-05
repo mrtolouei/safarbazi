@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class AvailabilityCalendar
+ *
  * @property int accommodation_id
  * @property string date
  * @property int price_standard

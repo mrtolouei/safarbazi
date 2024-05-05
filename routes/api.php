@@ -7,7 +7,7 @@ use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-   Route::post('login', LoginController::class);
+    Route::post('login', LoginController::class);
 });
 
 Route::middleware(['auth:api'])->group(function () {

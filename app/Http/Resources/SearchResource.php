@@ -14,9 +14,9 @@ class SearchResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $adultCount = $request->get('adult_count');
-        $childCount = $request->get('child_count');
-        $infantCount = $request->get('infant_count');
+        $adultCount = $request->get('adult_count', 0);
+        $childCount = $request->get('child_count', 0);
+        $infantCount = $request->get('infant_count', 0);
         $priceStandard = $this->calendars->sum('price_standard');
         $priceAdult = $this->calendars->sum('price_adult');
         $priceChild = $this->calendars->sum('price_child');

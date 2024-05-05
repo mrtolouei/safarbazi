@@ -23,6 +23,7 @@ class AccommodationController extends Controller
             'accommodations' => AccommodationResource::collection($accommodations),
             'paginate' => $this->paginate($accommodations),
         ];
+
         return self::json($data);
     }
 
@@ -57,12 +58,14 @@ class AccommodationController extends Controller
                 'accommodation' => new AccommodationResource($accommodation),
             ];
             DB::commit();
+
             return self::json($data);
         } catch (Exception $exception) {
             DB::rollBack();
-            Log::error("Accommodation creation is failed", [
+            Log::error('Accommodation creation is failed', [
                 'exception' => $exception->getMessage(),
             ]);
+
             return self::json([], 'Creation is failed', 500);
         }
     }
@@ -76,6 +79,7 @@ class AccommodationController extends Controller
         $data = [
             'accommodation' => new AccommodationResource($accommodation),
         ];
+
         return self::json($data);
     }
 
@@ -98,7 +102,7 @@ class AccommodationController extends Controller
                 AvailabilityCalendar::updateOrCreate([
                     'accommodation_id' => $accommodation->id,
                     'date' => $availableDate['date'],
-                ],[
+                ], [
                     'price_standard' => $availableDate['price_standard'],
                     'price_adult' => $availableDate['price_adult'],
                     'price_child' => $availableDate['price_child'],
@@ -111,12 +115,14 @@ class AccommodationController extends Controller
                 'accommodation' => new AccommodationResource($accommodation),
             ];
             DB::commit();
+
             return self::json($data);
         } catch (Exception $exception) {
             DB::rollBack();
-            Log::error("Accommodation update is failed", [
+            Log::error('Accommodation update is failed', [
                 'exception' => $exception->getMessage(),
             ]);
+
             return self::json([], 'Update is failed', 500);
         }
     }
@@ -129,11 +135,13 @@ class AccommodationController extends Controller
         try {
             $accommodation = Accommodation::findOrFail($id);
             $accommodation->delete();
+
             return self::json([], 'Accommodation deleted');
         } catch (Exception $exception) {
-            Log::error("Accommodation delete is failed", [
+            Log::error('Accommodation delete is failed', [
                 'exception' => $exception->getMessage(),
             ]);
+
             return self::json([], 'Delete is failed', 500);
         }
     }

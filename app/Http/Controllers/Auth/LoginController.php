@@ -18,10 +18,12 @@ class LoginController extends Controller
 
         if (Auth::attempt(['email' => $validatedData['email'], 'password' => $validatedData['password'], 'is_admin' => 1])) {
             $token = $request->user()->createToken('api')->plainTextToken;
+
             return self::json([
                 'token' => $token,
             ], 'Login is successful');
         }
+
         return self::json([], 'Credential is invalid', 401);
     }
 }
